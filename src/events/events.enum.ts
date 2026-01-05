@@ -1,0 +1,6 @@
+export enum SocketKeys {
+  MASSIVE_MESSAGES = 'MASSIVE_MESSAGES',
+  LAST_MESSAGE = 'LAST_MESSAGE',
+  JOIN = 'JOIN',
+  SEND = 'SEND',
+}
