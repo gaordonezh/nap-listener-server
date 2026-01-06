@@ -20,7 +20,7 @@ export class EventsService {
   }
 
   getEvents(params: GetEventsParamsDto): Promise<Array<Event>> {
-    return this.eventModel.find(params);
+    return this.eventModel.find(params).sort({ datetime: -1 });
   }
 
   createEvent(body: CreateEventBodyDto): Promise<Event> {

@@ -1,8 +1,4 @@
-import {
-  SubscribeMessage,
-  WebSocketGateway,
-  WebSocketServer,
-} from '@nestjs/websockets';
+import { SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import { SocketKeys } from './events.enum';
 import { EventsService } from './events.service';
@@ -20,11 +16,11 @@ export class EventsGateway {
   constructor(private readonly messageService: EventsService) {}
 
   handleDisconnect(client: Socket) {
-    console.log('DISCONECTED');
+    console.log('DISCONECTED', client.id);
   }
 
   handleConnection(client: Socket) {
-    console.log('CONECTED');
+    console.log('CONECTED', client.id);
     this.messageService.registerClient(client);
   }
 

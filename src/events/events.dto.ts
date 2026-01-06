@@ -1,4 +1,4 @@
-import { IsDateString, IsNotEmpty, IsString } from 'class-validator';
+import { IsDateString, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class GetEventsParamsDto {
   @IsNotEmpty()
@@ -11,6 +11,7 @@ export class RawDataBodyDto {
   text: string;
   packageName: string;
   timestamp: number;
+  phone: string;
 }
 
 export class CreateEventBodyDto {
@@ -33,4 +34,16 @@ export class CreateEventBodyDto {
   @IsNotEmpty()
   @IsDateString()
   datetime: Date;
+
+  @IsNotEmpty()
+  @IsString()
+  sender: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  amount: number;
+
+  @IsNotEmpty()
+  @IsString()
+  securityCode: string;
 }

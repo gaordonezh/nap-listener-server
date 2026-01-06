@@ -39,4 +39,13 @@ export class Event {
 
   @prop({ required: true, type: Date })
   datetime: Date;
+
+  @prop({ required: true, type: String })
+  sender: string;
+
+  @prop({ required: true, type: Number })
+  amount: number;
+
+  @prop({ required: true, type: String })
+  securityCode: string;
 }
