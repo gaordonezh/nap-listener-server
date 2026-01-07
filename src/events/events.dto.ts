@@ -1,8 +1,9 @@
-import { IsDateString, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsDateString, IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-validator';
 
 export class GetEventsParamsDto {
   @IsNotEmpty()
   @IsString()
+  @Length(9, 9, { message: '9 dígitos' })
   room: string;
 }
 
@@ -12,6 +13,11 @@ export class RawDataBodyDto {
   packageName: string;
   timestamp: number;
   phone: string;
+}
+
+export class SocketJoinParams {
+  room: string;
+  leave?: string;
 }
 
 export class CreateEventBodyDto {

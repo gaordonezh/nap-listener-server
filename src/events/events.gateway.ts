@@ -2,7 +2,7 @@ import { SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/web
 import { Server, Socket } from 'socket.io';
 import { SocketKeys } from './events.enum';
 import { EventsService } from './events.service';
-import { CreateEventBodyDto } from './events.dto';
+import { CreateEventBodyDto, SocketJoinParams } from './events.dto';
 
 @WebSocketGateway({
   cors: {
@@ -25,9 +25,9 @@ export class EventsGateway {
   }
 
   @SubscribeMessage(SocketKeys.JOIN)
-  handleJoin(client: Socket, roomId: string) {
-    // if (params.leave) client.leave(params.leave);
-    this.server.socketsJoin(roomId);
+  handleJoin(client: Socket, params: SocketJoinParams) {
+    if (params.leave) client.leave(params.leave);
+    client.join(params.room);
   }
 
   @SubscribeMessage(SocketKeys.SEND)
