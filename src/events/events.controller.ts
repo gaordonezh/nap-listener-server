@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { EventsService } from './events.service';
 import { GetEventsParamsDto, CreateEventBodyDto, RawDataBodyDto } from './events.dto';
 import { EventsGateway } from './events.gateway';
 import { parseYapeTextContent } from 'src/utils/functions';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('events')
 export class EventsController {
@@ -11,6 +12,7 @@ export class EventsController {
     private readonly eventsGateway: EventsGateway,
   ) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   getEvents(@Query() params: GetEventsParamsDto) {
     return this.eventsService.getEvents(params);

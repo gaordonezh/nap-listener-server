@@ -1,10 +1,4 @@
-import {
-  IsMongoId,
-  IsNotEmpty,
-  IsOptional,
-  IsString,
-  Length,
-} from 'class-validator';
+import { IsMongoId, IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
 
 export class ClientQueryParamsDto {
   @IsOptional()

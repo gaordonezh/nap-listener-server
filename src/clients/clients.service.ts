@@ -10,6 +10,11 @@ export class ClientsService {
 
   private readonly logger = new Logger(Client.name);
 
+  getClientByPhone(phone: string): Promise<Array<Client>> {
+    if (!phone || phone.length !== 9) throw new BadRequestException();
+    return this.clientModel.findOne({ phone });
+  }
+
   getClients(params: ClientQueryParamsDto): Promise<Array<Client>> {
     const { clientId, phone } = params;
 
